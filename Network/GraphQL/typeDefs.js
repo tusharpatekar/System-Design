@@ -12,7 +12,12 @@ type Book {
     author: Author
 }
 
+type MyFav {
+    myFavBook : myfav
+}
+
 type Query {
+    myBooks: [MyFav]
     authors: [Author]
     books: [Book]
  }

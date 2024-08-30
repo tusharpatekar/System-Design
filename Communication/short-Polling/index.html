@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Short Polling</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        section {
+            padding: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1></h1>
+    </header>
+
+    <section>
+        <h2>About This Page</h2>
+        <p>This is a simple HTML page created as an example. It includes a header, a main content section, and a footer.</p>
+        <p>HTML (Hypertext Markup Language) is the standard language for creating webpages.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Simple HTML Page</p>
+    </footer>
+
+    <script>
+        async function getdata() {
+            try {
+                const response = await fetch('/getdata');
+                const data = await response.text();  // Use response.text() to get plain text
+                console.log(data); // Ensure data is being received
+                document.getElementsByTagName('h1')[0].innerText = data; // Update the h1 element
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        // Call getdata immediately to fetch data as soon as the script runs
+        getdata();
+
+        // Set an interval to repeatedly call getdata every 5 seconds
+        setInterval(getdata, 5000);
+    </script>
+
+</body>
+</html>
